@@ -27,6 +27,26 @@ class User(BaseEntity):
         self.password_hash = self.hash_password(password)
         self.is_admin = is_admin
 
+          # Validate first_name
+        if not first_name or len(first_name) > 50:
+            raise ValueError("First name is required and must be less than 50 characters.")
+        self.first_name = first_name
+
+        # Validate last_name
+        if not last_name or len(last_name) > 50:
+            raise ValueError("Last name is required and must be less than 50 characters.")
+        self.last_name = last_name
+
+        # Validate email format
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            raise ValueError("Invalid email format.")
+        self.email = email
+
+        # Set the default value for is_admin
+        self.is_admin = is_admin
+
+        # created_at and updated_at are inherited from BaseEntity
+
     def hash_password(self, password):
         """
         Hashes the password before storing it.
@@ -54,6 +74,32 @@ class User(BaseEntity):
         - bool: True if the password matches, False otherwise.
         """
         return check_password_hash(self.password_hash, password)
+
+    def update(self, data):
+        """
+        Update the user's information with the provided data.
+
+        Parameters:
+        -----------
+        data (dict): A dictionary containing the new values for the user attributes.
+        """
+        if "first_name" in data:
+            if len(data["first_name"]) > 50:
+                raise ValueError("First name must be less than 50 characters.")
+            self.first_name = data["first_name"]
+
+        if "last_name" in data:
+            if len(data["last_name"]) > 50:
+                raise ValueError("Last name must be less than 50 characters.")
+            self.last_name = data["last_name"]
+
+        if "email" in data:
+            if not re.match(r"[^@]+@[^@]+\.[^@]+", data["email"]):
+                raise ValueError("Invalid email format.")
+            self.email = data["email"]
+
+        # Update the `updated_at` timestamp
+        self.save()
 
     def to_dict(self):
         """
