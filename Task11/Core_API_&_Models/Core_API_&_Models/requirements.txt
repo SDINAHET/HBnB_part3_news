@@ -1,0 +1,14 @@
+# Python dependencies.
+Flask==2.3.2                # Framework web principal
+Flask-SQLAlchemy==3.0.5     # Intégration de SQLAlchemy avec Flask
+Flask-Migrate==4.0.4        # Gestion des migrations avec Alembic
+Flask-Marshmallow==0.14.0   # Sérialisation/desérialisation d'objets
+marshmallow==3.20.1         # Base de Flask-Marshmallow
+Flask-Cors==3.0.10          # Gestion des requêtes cross-origin (CORS)
+Werkzeug==2.3.7             # Outils WSGI pour Flask
+python-dotenv==1.0.0        # Chargement des variables d'environnement
+PyJWT==2.8.0                # Génération et vérification de tokens JWT
+alembic==1.11.3             # Gestion des migrations
+pytest==7.4.2               # Framework de tests pour Python
+pytest-flask==1.2.0         # Intégration de pytest avec Flask
+SQLAlchemy==2.0.22          # ORM pour la gestion des bases de données
