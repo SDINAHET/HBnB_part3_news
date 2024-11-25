@@ -1,3 +1,4 @@
+```plaintext
 Core_API_&_Models/
 ├── app/                        # Contient l'application Flask et ses configurations
 │   ├── __init__.py             # Initialisation de l'application Flask
@@ -36,3 +37,4 @@ Core_API_&_Models/
 ├── requirements.txt            # Dépendances Python
 ├── run.py                      # Fichier principal pour démarrer l'application
 └── README.md                   # Documentation principale du projet
+```

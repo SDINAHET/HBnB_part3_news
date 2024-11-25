@@ -12,3 +12,4 @@ alembic==1.11.3             # Gestion des migrations
 pytest==7.4.2               # Framework de tests pour Python
 pytest-flask==1.2.0         # Intégration de pytest avec Flask
 SQLAlchemy==2.0.22          # ORM pour la gestion des bases de données
+marshmallow-sqlalchemy==0.29.0

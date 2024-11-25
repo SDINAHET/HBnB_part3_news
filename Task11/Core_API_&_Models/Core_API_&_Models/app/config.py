@@ -2,46 +2,115 @@
 import os
 
 class Config:
-    """Base configuration."""
-    SECRET_KEY = os.getenv('SECRET_KEY', 'your_default_secret_key')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_ECHO = False
+    """Base configuration class."""
     DEBUG = False
     TESTING = False
+    SECRET_KEY = os.getenv("SECRET_KEY", "supersecretkey")
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///instance/development.db")
+
 
 class DevelopmentConfig(Config):
-    """Development configuration."""
+    """Configuration pour le développement."""
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.getenv(
-        'DATABASE_URL', 'sqlite:///instance/development.db'
-    )
+    SQLALCHEMY_DATABASE_URI = "sqlite:///instance/development.db"
+
 
 class TestingConfig(Config):
-    """Testing configuration."""
+    """Configuration pour les tests."""
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.getenv(
-        'TEST_DATABASE_URL', 'sqlite:///:memory:'
-    )
-    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_DATABASE_URI = "sqlite:///instance/test.db"
+
 
 class ProductionConfig(Config):
-    """Production configuration."""
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'sqlite:///instance/production.db')
-    DEBUG = False
+    """Configuration pour la production."""
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///instance/production.db")
 
-# Dictionary to map environment to configuration
-config_by_name = {
-    'development': DevelopmentConfig,
-    'testing': TestingConfig,
-    'production': ProductionConfig,
+
+# Mapping des configurations
+config = {
+    "development": DevelopmentConfig,
+    "testing": TestingConfig,
+    "production": ProductionConfig,
+    "default": DevelopmentConfig
 }
 
-def get_config(env_name):
-    """Get configuration class based on environment name."""
-    return config_by_name.get(env_name, Config)
 
 
-import os
+
+
+# import os
+
+# class InstanceConfig:
+#     """Configuration for local development."""
+
+#     # Secret key for Flask application
+#     SECRET_KEY = os.environ.get("SECRET_KEY", "local_secret_key")
+
+#     # Database URI for development
+#     SQLALCHEMY_DATABASE_URI = os.environ.get(
+#         "DEV_DATABASE_URI", "sqlite:///development.db"
+#     )
+
+#     # Debug mode enabled
+#     DEBUG = True
+
+#     # Disable SQLAlchemy event tracking (improves performance)
+#     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+#     # Flask-specific settings
+#     WTF_CSRF_ENABLED = True
+#     JSONIFY_PRETTYPRINT_REGULAR = True
+
+
+
+
+# import os
+
+# class Config:
+#     """Base configuration."""
+#     SECRET_KEY = os.getenv('SECRET_KEY', 'your_default_secret_key')
+#     SQLALCHEMY_TRACK_MODIFICATIONS = False
+#     SQLALCHEMY_ECHO = False
+#     DEBUG = False
+#     TESTING = False
+
+# class DevelopmentConfig(Config):
+#     """Development configuration."""
+#     DEBUG = True
+#     SQLALCHEMY_DATABASE_URI = os.getenv(
+#         'DATABASE_URL', 'sqlite:///instance/development.db'
+#     )
+
+# class TestingConfig(Config):
+#     """Testing configuration."""
+#     TESTING = True
+#     SQLALCHEMY_DATABASE_URI = os.getenv(
+#         'TEST_DATABASE_URL', 'sqlite:///:memory:'
+#     )
+#     SQLALCHEMY_ECHO = True
+
+# class ProductionConfig(Config):
+#     """Production configuration."""
+#     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'sqlite:///instance/production.db')
+#     DEBUG = False
+
+# # Dictionary to map environment to configuration
+# config_by_name = {
+#     'development': DevelopmentConfig,
+#     'testing': TestingConfig,
+#     'production': ProductionConfig,
+# }
+
+# def get_config(env_name):
+#     """Get configuration class based on environment name."""
+#     return config_by_name.get(env_name, Config)
+
+
+
+
+
+# import os
 
 # class Config:
 #     """
