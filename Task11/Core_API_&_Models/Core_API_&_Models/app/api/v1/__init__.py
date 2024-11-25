@@ -6,6 +6,8 @@ v1_bp = Blueprint('v1', __name__)
 
 # Importe les routes spécifiques
 from app.api.v1.routes import users, places, reviews, amenities, auth
+# Importer les routes
+# from .routes import users, amenities, places, reviews, auth
 
 # Enregistre les blueprints ou routes individuelles si nécessaire
 v1_bp.register_blueprint(users.bp, url_prefix='/users')

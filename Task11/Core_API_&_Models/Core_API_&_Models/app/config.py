@@ -36,6 +36,25 @@ config = {
 }
 
 
+# class Config:
+#     SQLALCHEMY_TRACK_MODIFICATIONS = False
+#     SECRET_KEY = 'your_secret_key'
+#     DEBUG = True
+
+# class DevelopmentConfig(Config):
+#     SQLALCHEMY_DATABASE_URI = 'sqlite:///instance/development.db'
+
+# class ProductionConfig(Config):
+#     SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@localhost/production_db'
+#     DEBUG = False
+
+# config = {
+#     'default': DevelopmentConfig,
+#     'development': DevelopmentConfig,
+#     'production': ProductionConfig
+# }
+
+
 
 
 
